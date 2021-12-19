@@ -10,8 +10,7 @@ else
 	
 	if  [[ $beforelast != [0-9A-Za-z] ]] ; then
 		let "counter += 1"
-		echo "Only one char needed :"${param[${#param[@]}-2]}"" 			1>&2
-		
+		echo "Only one char needed :"${param[${#param[@]}-2]}"" 			1>&2	
 	fi
 	
 	last="${param[${#param[@]}-1]}"
@@ -25,8 +24,7 @@ else
 		do
 			if ! [ -e "$path" ] || [ -d "$path" ] ; then
 				let "counter += 1"
-				echo "File does not exist :"$path"" 1>&2
-				
+				echo "File does not exist :"$path"" 1>&2	
 			fi
 		done
 	fi  
@@ -45,12 +43,9 @@ else
 		tr [:upper:] [:lower:] < copy.txt > output.txt
 		cat output.txt | sed -e 's/[^[:alpha:]]/ /g'  | tr '\n' " " | tr -s " " | tr " " '\n' | grep ^[${param[${#param[@]}-2]}] | 
 		grep "^.\{${param[${#param[@]}-1]},\}$" | sort | uniq -c | sort -k1n -k2,2 | sed -e 's/^[ \t]*//'
-		
 	
 	rm copy.txt output.txt
-	fi
-		 
-	
+	fi		 	
 fi
 	
 		 	
